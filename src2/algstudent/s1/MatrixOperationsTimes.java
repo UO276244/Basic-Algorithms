@@ -7,7 +7,7 @@ public class MatrixOperationsTimes {
 	public static void main(String args[]) {
 		
 		int sizeMatrix = 10;
-		int nTimes = 5; //Each measure is performed 5 times
+		int nTimes = 0; //Each measure is performed 5 times
 		
 		MatrixOperations mo = new MatrixOperations(sizeMatrix, 1, 100);
 		long startTime1;
@@ -34,11 +34,9 @@ public class MatrixOperationsTimes {
 				totalTime2 += finishTime2;
 			}
 			
-			totalTime1 /= nTimes;
-			totalTime2 /= nTimes;
 			
 			System.out.println("N: " + sizeMatrix + " sumDiagonal1 time: " + 			totalTime1 + " sumDiagonal2: " + totalTime2);
-			sizeMatrix *= 2;
+			sizeMatrix *= 3;
 			mo = new MatrixOperations(sizeMatrix,1,100);
 		
 		}
