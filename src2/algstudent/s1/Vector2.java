@@ -13,7 +13,7 @@ public class Vector2 {
 		Vector1.sum(v);
 		long elapsedTime = System.currentTimeMillis() - startingTime;
 		
-		System.out.println("Elapsed time in milliseconds: " + elapsedTime);
+		System.out.println("N: "+ n +" Time: " + elapsedTime);
 		//​​
 	}
 

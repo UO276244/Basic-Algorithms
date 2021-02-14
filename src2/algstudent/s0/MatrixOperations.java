@@ -32,7 +32,7 @@ public class MatrixOperations {
 		matrix = new int[n][n];
 
 		for (int i = 0; i < matrix[0].length; i++) {
-			for (int j = 0; j < matrix[i].length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
 
 				matrix[i][j] = rand.nextInt((max - min) + 1) + min;
 
