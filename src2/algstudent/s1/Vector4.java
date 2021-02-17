@@ -16,7 +16,7 @@ public class Vector4 {
 				avgTime += calculateMax(""+startingN);
 			}
 			
-			System.out.println("N: " + startingN + " Avg Time: " + avgTime);
+			System.out.println("N: " + startingN + " Avg Time: " + (float)avgTime/nTimes);
 			startingN *= 3;
 			
 		}
