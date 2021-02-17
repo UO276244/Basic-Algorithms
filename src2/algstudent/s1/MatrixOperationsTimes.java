@@ -7,7 +7,7 @@ public class MatrixOperationsTimes {
 	public static void main(String args[]) {
 		
 		int sizeMatrix = 10;
-		int nTimes = 1000; //Each measure is performed 5 times
+		int nTimes = 1000; //Each measure is performed 1000 times
 		
 		MatrixOperations mo = new MatrixOperations(sizeMatrix, 1, 100);
 		long startTime1;
