@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Loop2 {
 
+	/**
+	 * COMPLEXITY: N^2
+	 * @param n
+	 */
 	public static void loop2(int n) {
 		Random rn = new Random();
 		@SuppressWarnings("unused")
@@ -13,6 +17,11 @@ public class Loop2 {
 				cont += rn.nextInt();
 	}
 	
+	/**
+	 * n^2 complexity from loop2 
+	 * COMPLEXITY: N^2
+	 * @param arg
+	 */
 	public static void main(String arg[]) {
 		long t1, t2;
 		int nTimes = Integer.parseInt(arg[0]);
@@ -28,4 +37,6 @@ public class Loop2 {
 			System.out.println("n="+n+ "**TIME=" +(t2-t1)+ " ** nTimes=" + nTimes);
 		} //for	
 	} //main
+
+	
 } //class

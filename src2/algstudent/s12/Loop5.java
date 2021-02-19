@@ -2,20 +2,21 @@ package algstudent.s12;
 
 import java.util.Random;
 
-public class Loop3 {
+public class Loop5 {
+	
 	/**
-	 * COMPLEXITY: N^2
+	 * COMPLEXITY: N^3 * logN
 	 * @param n
 	 */
-	public static void loop3(int n) {
+	public static void loop5(int n) {
 		Random rn = new Random();
 		@SuppressWarnings("unused")
 		int cont = 0;
-		//Complexity of n
 		for (int i=1; i<=n; i++)
-			//Complexiti of i which at most, is n, so complexity of inner loop = O(n)
-			for (int j=1; j<=i; j++)
-				cont += rn.nextInt();
+			for (int j=1; j<=n; j++)
+				for(int k = 1; k<=n;k++)
+					for(int r = 1; r<=n;r*=2) //logN
+						cont += rn.nextInt();
 	}
 	
 	public static void main(String arg []){
@@ -26,7 +27,7 @@ public class Loop3 {
 			t1 = System.currentTimeMillis();
 	 
 			for (int repetitions=1; repetitions<=nTimes; repetitions++) {
-				loop3(n);
+				loop5(n);
 			} 
 	 
 			t2 = System.currentTimeMillis();
@@ -34,4 +35,5 @@ public class Loop3 {
 	 }  // for
 	
 	} // main
-} //class
+
+}
