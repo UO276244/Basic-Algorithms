@@ -23,6 +23,7 @@ public class Vector4 {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private static long calculateSum(String str) {
 		int n = Integer.parseInt(str);
 		int[] v = new int[n];
@@ -32,7 +33,7 @@ public class Vector4 {
 		
 		return elapsedTime;
 	}
-	
+	@SuppressWarnings("unused")
 	private static long calculateFillIn(String str) {
 		int n = Integer.parseInt(str);
 		int[] v = new int[n];
