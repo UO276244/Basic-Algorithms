@@ -1,4 +1,4 @@
-package algstudent.s1;
+package algstudent.s11;
 
 import algstudent.s0.MatrixOperations;
 
