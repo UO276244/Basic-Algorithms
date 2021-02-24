@@ -10,13 +10,12 @@ public class Bubble extends Vector {
 
 	@Override
 	public void sort() {
-		for(int i = 1; i<super.elements.length;i++) {
-			for(int j = super.elements.length - 1; j>=i;j--) {
-				if(elements[j-1] < elements[j]) {
-					super.interchange(j-1, j);
-				}
-			}
-		}
+		for (int i = 0; i < super.elements.length-1; i++) 
+            for (int j = 0; j < super.elements.length-i-1; j++) 
+                if (super.elements[j] > super.elements[j+1]) 
+                { 
+                    super.interchange(j+1, j);
+                } 
 	}  
 	
 	@Override
