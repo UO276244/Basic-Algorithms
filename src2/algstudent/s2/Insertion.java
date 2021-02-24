@@ -22,6 +22,7 @@ public class Insertion extends Vector {
 				elements[j+1] = elements[j];
 				j--;
 			}
+			elements[j+1] = pivot;
 		}
 	} 
 	

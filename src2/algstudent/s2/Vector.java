@@ -79,9 +79,11 @@ public abstract class Vector implements ISortingProblem {
 	
 	protected int findPosMin(int i) {
 		int min = Integer.MAX_VALUE;
+		int minVal = Integer.MAX_VALUE;
 		for(int j = i; j< elements.length; j++) {
-			if(elements[j] < min) {
-				min = elements[j];
+			if(elements[j] < minVal) {
+				minVal = elements[j];
+				min = j;
 			}
 		}
 		
