@@ -9,9 +9,6 @@ public class QuicksortCentralElement extends Vector {
 		super(nElements);
 	}
 	
-	private int centralElement() {
-		return elements[(elements.length-1)/2];
-	}
 	
 	private void quickSort(int left, int right) {
 		int i = left;
@@ -19,7 +16,7 @@ public class QuicksortCentralElement extends Vector {
 		int pivot;
 		
 		if (left < right){ //if there is one element it is not necessary
-			int center = centralElement();
+			int center = (left + right)/2;
 			//if there are less than or equal to 3 elements, there are just ordered
 			if ((right - left) >= 3){ 
 				pivot = elements[center]; //choose the pivot
