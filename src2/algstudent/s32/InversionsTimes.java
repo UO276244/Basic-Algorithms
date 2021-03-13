@@ -22,7 +22,7 @@ public class InversionsTimes {
 			ranking = readRankingFromFile(fileName);
 	        Inversions inv1 = new Inversions(ranking);	
 	        long  t1 = System.currentTimeMillis();              
-	        System.out.println("Number of inversions = " + inv1.start());                 				
+	        System.out.println("Number of inversions = " + inv1.start());
 	        long  t2 = System.currentTimeMillis();              
 	        if(i>=1) System.out.println("The time for the algorithm O(n logn) is: " + (t2-t1) + " milliseconds");
 	        

@@ -29,11 +29,9 @@ public class Inversions {
 	}
 
 	public long merge(int leftStart, int leftEnd, int rightStart, int rightEnd, List<Integer> elements) {
-		int sizeLeft = leftEnd - leftStart + 1;
+		
 		int sizeRight = rightEnd - rightStart + 1;
-
-		
-		
+		int sizeLeft = leftEnd - leftStart + 1;
 		List<Integer> leftList = new ArrayList<Integer>();
 		List<Integer> rightList = new ArrayList<Integer>();
 		
@@ -47,7 +45,7 @@ public class Inversions {
 		}
 		
 		int auxPointer = 0; //Pointer in original subPart of elements list
-		
+		int elemsMovedFromAuxLists = 0; //
 		long inversionsCounter = 0;
 		
 		//Check lowest value between leftList and rightList, locate that value in correspondent part
@@ -57,8 +55,12 @@ public class Inversions {
 		    	
 			    elements.set(leftStart + auxPointer, rightList.remove(0));
 			    
-			    inversionsCounter += rightStart - leftStart  - auxPointer; 
-			   
+			    inversionsCounter += rightStart - leftStart - auxPointer + elemsMovedFromAuxLists ; 
+			    
+			    // Counter increased as many elements moved away from aux lists when inserting a value
+			    //It is increased when a value in the right is lower than that on the left, so at least
+			    //one inversion takes place.
+			    elemsMovedFromAuxLists ++;
 			   
 		    } else {
 		    	elements.set(leftStart + auxPointer, leftList.remove(0));
@@ -69,7 +71,7 @@ public class Inversions {
 		}
 		
 		
-		//If any of the lists is not empty yet, copy all its elements directly to the original elements list
+		//As one of the lists is not empty yet, add all itts elements at the end
 		
 		while (!rightList.isEmpty()) {
 			elements.set(leftStart + auxPointer, rightList.remove(0));
@@ -85,11 +87,6 @@ public class Inversions {
 
 	}
 	
-	public void print() {
-		for (Integer integer : ranking) {
-			System.out.println(integer);
-		}
-	}
 	
 }
 
