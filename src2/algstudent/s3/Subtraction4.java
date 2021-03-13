@@ -9,7 +9,7 @@ public class Subtraction4 {
 	 */
 	
 	/**
-	 * a = 3, b = 2, k = 1 => doesn't matter
+	 * a = 3, b = 2, k = 0 => doesn't matter
 	 * @param n
 	 * @return
 	 */
