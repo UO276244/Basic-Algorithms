@@ -10,20 +10,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import algstudent.s32.Inversions;
+
 public class SegmentsPlacement {
 
 	private static int numOfLines;
 	private static Map<String, Integer> listOfSegments;
-	private static List<String> sortedKeys;
+	
 	
 	public static void main(String args[]) {
 		numOfLines = 0;
 		listOfSegments = new HashMap<String,Integer>();
 		importSegmentsFromFile(args[0]);
-		sortedKeys= new ArrayList<String>(listOfSegments.keySet());
-		Collections.sort(sortedKeys);
+		
 		
 		Greedy1();
+		Greedy2();
+		Greedy3();
 	}
 	
 	
@@ -35,6 +38,10 @@ public class SegmentsPlacement {
 	 */
 	private static void Greedy1() {
 		
+		List<String> sortedKeys= new ArrayList<String>(listOfSegments.keySet());
+		Collections.sort(sortedKeys);
+		//I copy the keys to a list and i order them from lower (S0) to gratest (S5)
+		
 		System.out.println("GREEDY 1:");
 		double finalCost = 0.0;
 		double currentMaxPos = 0;
@@ -44,27 +51,70 @@ public class SegmentsPlacement {
 			movement = listOfSegments.get(key)+currentMaxPos;
 			currentMidPoint = movement - (movement - currentMaxPos)/2;
 			finalCost += currentMidPoint;
-			System.out.println(""+key+": (" + currentMaxPos + " to " + movement + "), midpoint = " + currentMidPoint);
+			System.out.println(""+key+": (" + (int)currentMaxPos + " to " + (int)movement + "), midpoint = " + currentMidPoint);
 			currentMaxPos = movement;
 		}
 		
-		System.out.println("Cost of greedy 1 = " + finalCost);
+		System.out.println("Cost of greedy 1 = " + finalCost+"\n");
 	}
 	
 	
 	/**
 	 * GREEDY 2: If consists in placing them from longest to shortest length.
 	 */
-	private void Greedy2() {
+	private static void Greedy2() {
+		
+		System.out.println("GREEDY 2:");
+		List<Integer> values = new ArrayList<Integer>(listOfSegments.values());
+		Inversions sorter = new Inversions(values);
+		sorter.mergeSort(0, values.size() - 1);
+		values = sorter.getRanking();
+		
+		double finalCost = 0.0;
+		double currentMaxPos = 0;
+		double movement = 0;
+		double currentMidPoint;
+		for(int i = values.size() - 1; i>= 0; i--) {
 			
+			movement = values.get(i)+currentMaxPos;
+			currentMidPoint = movement - (movement - currentMaxPos)/2;
+			finalCost += currentMidPoint;
+			System.out.println(""+values.get(i)+": (" + (int)currentMaxPos + " to " + (int)movement + "), midpoint = " + currentMidPoint);
+			currentMaxPos = movement;
+			
+		}
+		
+		System.out.println("Cost of greedy 2 = " + finalCost + "\n");
 	}
 	
 	/**
 	 * GREEDY 3: If consists in placing them from shortest to longest length.
 	 */
-	private void Greedy3() {
+	private static void Greedy3() {
+		
+		System.out.println("GREEDY 3:");
+		List<Integer> values = new ArrayList<Integer>(listOfSegments.values());
+		Inversions sorter = new Inversions(values);
+		sorter.mergeSort(0, values.size() - 1);
+		
+		double finalCost = 0.0;
+		double currentMaxPos = 0;
+		double movement = 0;
+		double currentMidPoint;
+		for(int val : sorter.getRanking()) {
+			
+			movement = val+currentMaxPos;
+			currentMidPoint = movement - (movement - currentMaxPos)/2;
+			finalCost += currentMidPoint;
+			System.out.println(""+val+": (" + (int)currentMaxPos + " to " + (int)movement + "), midpoint = " + currentMidPoint);
+			currentMaxPos = movement;
+			
+		}
+		
+		System.out.println("Cost of greedy 3 = " + finalCost);
 		
 	}
+	
 	
 	
 	

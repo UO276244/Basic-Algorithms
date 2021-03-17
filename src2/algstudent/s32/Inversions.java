@@ -14,8 +14,17 @@ public class Inversions {
 	public long start() {
 		return mergeSort(0, ranking.size() - 1, ranking);
 	}
+	
+	public List<Integer> getRanking(){
+		
+		return ranking;
+	}
+	
+	public void mergeSort(int left, int right) {
+		mergeSort( left,  right, this.ranking);
+	}
 
-	private long mergeSort(int left, int right, List<Integer> elements) {
+	public long mergeSort(int left, int right, List<Integer> elements) {
 		long inversionsCount = 0;
 		if (right > left) {
 			
@@ -28,7 +37,7 @@ public class Inversions {
 		return inversionsCount;
 	}
 
-	public long merge(int leftStart, int leftEnd, int rightStart, int rightEnd, List<Integer> elements) {
+	private long merge(int leftStart, int leftEnd, int rightStart, int rightEnd, List<Integer> elements) {
 		
 		int sizeRight = rightEnd - rightStart + 1;
 		int sizeLeft = leftEnd - leftStart + 1;
