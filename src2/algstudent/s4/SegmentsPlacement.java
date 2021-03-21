@@ -15,13 +15,14 @@ public class SegmentsPlacement {
 
 	private int numOfLines;
 	private  Map<String, Integer> listOfSegments;
-	
+	private List<String> sortedKeys;
 	
 	public  void main(String filename) {
 		numOfLines = 0;
 		listOfSegments = new HashMap<String,Integer>();
 		importSegmentsFromFile(filename);//"files/game1.txt"
-		
+		sortedKeys= new ArrayList<String>(listOfSegments.keySet());
+		Collections.sort(sortedKeys);
 		
 		Greedy1(true);
 		Greedy2(true);
@@ -42,8 +43,7 @@ public class SegmentsPlacement {
 	 */
 	public void Greedy1(boolean toPrint) {
 		
-		List<String> sortedKeys= new ArrayList<String>(listOfSegments.keySet());
-		Collections.sort(sortedKeys);
+		
 		//I copy the keys to a list and i order them from lower (S0) to gratest (S5)
 		
 		if(toPrint) {System.out.println("GREEDY 1:");}
