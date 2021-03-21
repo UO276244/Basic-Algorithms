@@ -13,16 +13,15 @@ import java.util.Map;
 
 public class SegmentsPlacement {
 
-	private int numOfLines;
-	private  Map<String, Integer> listOfSegments;
-	private List<String> sortedKeys;
+	private static int numOfLines;
+	private static Map<String, Integer> listOfSegments;
+	private static List<String> sortedKeys;
 	
-	public  void main(String filename) {
+	public static void main(String filename) {
 		numOfLines = 0;
 		listOfSegments = new HashMap<String,Integer>();
 		importSegmentsFromFile(filename);//"files/game1.txt"
-		sortedKeys= new ArrayList<String>(listOfSegments.keySet());
-		Collections.sort(sortedKeys);
+		
 		
 		Greedy1(true);
 		Greedy2(true);
@@ -32,6 +31,8 @@ public class SegmentsPlacement {
 	public SegmentsPlacement(Map<String,Integer> listOfElems, int numOfSegments) {
 		this.listOfSegments = listOfElems;
 		this.numOfLines = numOfSegments;
+		sortedKeys= new ArrayList<String>(listOfSegments.keySet());
+		Collections.sort(sortedKeys);
 	}
 	
 	
@@ -41,7 +42,7 @@ public class SegmentsPlacement {
 	 * because in the end every solution gives the same cost, 
 	 * then why are we going to complicate our lives?".
 	 */
-	public void Greedy1(boolean toPrint) {
+	public static void Greedy1(boolean toPrint) {
 		
 		
 		//I copy the keys to a list and i order them from lower (S0) to gratest (S5)
@@ -51,7 +52,8 @@ public class SegmentsPlacement {
 		double currentMaxPos = 0;
 		double movement = 0;
 		double currentMidPoint;
-		for(String key : sortedKeys){
+		List<String> sortedAux = sortedKeys;
+		for(String key : sortedAux){
 			movement = listOfSegments.get(key)+currentMaxPos;
 			currentMidPoint = movement - (movement - currentMaxPos)/2;
 			finalCost += currentMidPoint;
@@ -69,7 +71,7 @@ public class SegmentsPlacement {
 	/**
 	 * GREEDY 2: If consists in placing them from longest to shortest length.
 	 */
-	public void Greedy2(boolean toPrint) {
+	public static void Greedy2(boolean toPrint) {
 		
 		if(toPrint) {System.out.println("GREEDY 2:");}
 		List<Integer> values = new ArrayList<Integer>(listOfSegments.values());
@@ -99,7 +101,7 @@ public class SegmentsPlacement {
 	/**
 	 * GREEDY 3: If consists in placing them from shortest to longest length.
 	 */
-	public void Greedy3(boolean toPrint) {
+	public static void Greedy3(boolean toPrint) {
 		
 		if(toPrint) {System.out.println("GREEDY 3:");}
 		List<Integer> values = new ArrayList<Integer>(listOfSegments.values());
@@ -133,7 +135,7 @@ public class SegmentsPlacement {
 	 * Private method to read a file and import the number of segments and its corresponding length
 	 * @param fileName
 	 */
-	private void importSegmentsFromFile(String fileName) {
+	private static void importSegmentsFromFile(String fileName) {
 		
 		String line;
 		int lineCount = 0;

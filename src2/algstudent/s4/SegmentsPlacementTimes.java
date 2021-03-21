@@ -29,19 +29,19 @@ public class SegmentsPlacementTimes {
 			
 			 timeGreedy1 = System.currentTimeMillis();
 			 for(int i = 0;i<nTimes;i++) {
-				 segmentsAlgorithms.Greedy1(false);
+				 SegmentsPlacement.Greedy1(false);
 			}
 			timeGreedy1 = (System.currentTimeMillis() - timeGreedy1)/nTimes;
 			
 			 timeGreedy2 = System.currentTimeMillis();
 			 for(int i = 0;i<nTimes;i++) {
-				 segmentsAlgorithms.Greedy2(false);
+				 SegmentsPlacement.Greedy2(false);
 			}
 			timeGreedy2 = (System.currentTimeMillis() - timeGreedy2)/nTimes;
 			
 			 timeGreedy3 = System.currentTimeMillis();
 			 for(int i = 0;i<nTimes;i++) {
-				 segmentsAlgorithms.Greedy3(false);
+				 SegmentsPlacement.Greedy3(false);
 			}
 			timeGreedy3 = (System.currentTimeMillis() - timeGreedy3)/nTimes;
 			
