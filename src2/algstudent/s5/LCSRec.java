@@ -22,8 +22,42 @@ public class LCSRec {
 	 * Find a MSC directly by a recursive approach 
 	 */
 	public String findLongestSubseq(String s1, String s2){
-		return ""; 
-		// TODO: find directly a MSC (whitout a table) of two input sequences using recursion  
+		
+		//Base case
+		if(s1.length() == 0 || s2.length() == 0) {
+			return "";
+		}
+		else {
+			
+			char c1 = s1.charAt(s1.length()-1);
+			char c2 = s2.charAt(s2.length()-1);
+			
+			String s1prime = s1.substring(0, s1.length()-1); //S1 without rightmost element
+			String s2prime = s2.substring(0, s2.length()-1); //S2 without rightmost element
+			
+			String l1 = findLongestSubseq(s1prime, s2);
+			String l2 = findLongestSubseq(s1, s2prime);
+			String l3 = findLongestSubseq(s1prime, s2prime);
+			
+			int longest = -1;
+			if(c1 == c2) {
+				l3 = l3 + c2;
+				longest = longest(l1,l2,l3);
+			}
+			else {
+				longest = longest(l1,l2,l3);
+			}
+			
+			if(longest == 1) return l1;
+			else if(longest == 2) return l2;
+			else if(longest == 3) return l3;
+			else throw new RuntimeException();
+			 
+		}
+		
+		
+		 
+		
 	}
 	
 	/**
@@ -35,8 +69,12 @@ public class LCSRec {
 	 */
 	@SuppressWarnings("unused")
 	private int longest(String l1, String l2, String l3) {
-		return -1;
-		// TODO (optional): from three different sequences (e.g. subsequences) gets index for the longest
+		
+		if(l1.length() >= l2.length() && l1.length() >= l3.length()) {return 1;}
+		else if(l2.length() >= l1.length() && l2.length() >= l3.length()) {return 2;}
+		else if(l3.length() >= l1.length() && l3.length() >= l2.length()) {return 3;}
+		else {return -1;}
+		}
 	}
 
-}
+

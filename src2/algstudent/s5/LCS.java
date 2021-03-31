@@ -100,6 +100,40 @@ public class LCS {
 	 */
 	public void fillTable(){
 		// TODO: fill dynamic programming table with a cell (value, iPrev and jPrev) for each entry
+		for(int i = 0; i< size1; i++) {
+			table[i][0].value=0;
+			table[i][0].iPrev = 0;
+			table[i][0].jPrev = 0;
+			
+		}
+		for(int j = 0; j<size2;j++) {
+			table[0][j].value = 0;
+			table[0][j].iPrev = 0;
+			table[0][j].jPrev = 0;
+		}
+		int longe = 0;
+		for(int i = 1; i<size1;i++) {
+			for(int j = 1; j<size2;j++) {
+				if(str1.charAt(i)==str2.charAt(j)) {
+					 longe=longest(table[i-1][j].value, table[i][j-1].value, table[i-1][j-1].value +1);
+					table[i][j].value = longe;
+					table[i][j].iPrev = i-1;
+					table[i][j].jPrev = j-1;
+				
+				}
+				else {
+					 longe = longest(table[i-1][j].value, table[i][j-1].value, table[i-1][j-1].value);
+					table[i][j].value = longe;
+					if(longe == table[i][j-1].value) {
+						table[i][j].iPrev = i;
+						table[i][j].jPrev = j-1;
+					}else if(longe == table[i-1][j].value) {
+						table[i][j].iPrev = i-1;
+						table[i][j].jPrev = j;
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -111,8 +145,11 @@ public class LCS {
 	 */
 	@SuppressWarnings("unused")
 	private int longest(int num1, int num2, int num3) {
-		return -1;
-		// TODO (optional): from three different values (e.g. partial MSC lengths) gets index for the longest
+		if(num1 >= num2 && num1 >= num3) {return num1;}
+		else if(num2 >= num3 && num2 >= num1) {return num2;}
+		else {
+			return num3;
+		}
 	}
 	
 	/**

@@ -2,7 +2,7 @@ package algstudent.s5;
 
 public class LCSTimes {
 	
-	static String mode = "dynamic"; // "recursive";   
+	static String mode = /**"dynamic"*/  "recursive";   
 	static int nTimes = 10;
 	
 	public static void main(String args[]) {
@@ -30,7 +30,7 @@ public class LCSTimes {
 		else {            
 			LCSRec lcs_rec;
 			String str1, str2;
-			for (int n=1; n<=12800; n++) { 
+			for (int n=2; n<=12800; n+=2) { 
 				for (int i=0; i<nTimes; i++){
 					lcs_rec = new LCSRec();
 					str1 = lcs_rec.genRandomSeq(n);
