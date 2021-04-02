@@ -158,6 +158,24 @@ public class LCS {
 	 */
 	public void findLongestSubseq(boolean v){
 		// TODO: After the table is filled, from table last element traces the MSC found
+		int iCurrent = size1-1;
+		int jCurrent = size2-1;
+		
+		int iPrev = table[iCurrent][jCurrent].iPrev;
+		int jPrev = table[iCurrent][jCurrent].jPrev;
+		
+		while(iCurrent != 0 && jCurrent != 0) {
+			if(iCurrent == iPrev+1 && jCurrent == jPrev+1)
+			{result = str1.charAt(iCurrent) + result;}
+			if(v) {
+				System.out.println(" - (" + iCurrent + "," + jCurrent + ")");
+			}
+			iCurrent = iPrev;
+			jCurrent = jPrev;
+			iPrev = table[iCurrent][jCurrent].iPrev;
+			jPrev = table[iCurrent][jCurrent].jPrev;
+		}
+		
 	}
 
 }
