@@ -30,20 +30,42 @@ public class BestList {
 		auxBlockB = new ArrayList<Song>();
 	}
 	
+	/*
+	 * Method to apply backtracking
+	 */
 	public void compute() {
 		compute(0); 
 		
 	}
 	
+	/**
+	 * Check if any of the elements in list A is contained in B, if they have at least one element in common, return true
+	 * @param A
+	 * @param B
+	 * @return
+	 */
+	private boolean shareElement(List<Song> A, List<Song> B) {
+		
+		for(Song s : A) {
+			if(B.contains(s)) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
+	
 	private void compute(int index){
 		
-		if(index == totalSongs) {
+		if(index == totalSongs) { //We have reached the last song
 			
 			if(calcScoreTotal(auxBlockA) >= calcScoreTotal(bestBlockA)) {
 				bestBlockA = new ArrayList<Song>(auxBlockA);
 			}
 			
-			if(calcScoreTotal(auxBlockB) >= calcScoreTotal(bestBlockB)) {
+			if(calcScoreTotal(auxBlockB) >= calcScoreTotal(bestBlockB)
+					&& !shareElement(auxBlockB,bestBlockA)) { //This extra condition checks that B has no repeated songs comparing to A
 				bestBlockB = new ArrayList<Song>(auxBlockB);
 			}
 			
@@ -56,8 +78,8 @@ public class BestList {
 			counter++;
 			//
 			
-			if(avalableSpaceInBlock(songs.get(index),auxBlockA) &&
-					!bestBlockB.contains(songs.get(index))) {
+			//Just try to add song to block A if it does not exceed the 20 mins total
+			if(avalableSpaceInBlock(songs.get(index),auxBlockA)) {
 				
 				//Song included in blockA
 				auxBlockA.add(songs.get(index));
@@ -66,10 +88,9 @@ public class BestList {
 				auxBlockA.remove(songs.get(index));
 				//Delete song from blockA
 			}
-		
-			if(avalableSpaceInBlock(songs.get(index),auxBlockB) &&
-					!bestBlockA.contains(songs.get(index))) {
-				
+			//Just try to add song to block B if it does not exceed the 20 mins total
+			if(avalableSpaceInBlock(songs.get(index),auxBlockB)) {
+			
 				//Song included in blockA
 				auxBlockB.add(songs.get(index));
 				compute(index + 1);
@@ -78,7 +99,7 @@ public class BestList {
 				//Delete song from blockB
 			}
 			
-				
+			
 				
 		}
 			
@@ -112,6 +133,12 @@ public class BestList {
 		System.out.println("Total score Block B: " + totalScB);
 	}
 	
+	/**
+	 * Check if the song s has space inside the block
+	 * @param s
+	 * @param block
+	 * @return
+	 */
 	private boolean avalableSpaceInBlock(Song s, List<Song> block) {
 		
 		if(calcDurationTotal(block) + s.getSeconds() > maxDurationSeconds) {
@@ -122,7 +149,11 @@ public class BestList {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param block
+	 * @return
+	 */
 	private int calcDurationTotal(List<Song> block) {
 		
 		int total = 0;

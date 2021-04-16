@@ -37,7 +37,13 @@ public class Song {
 		int mins = seconds / 60;
 		int sec = seconds % 60;
 		
-		return ""+mins+":"+sec;
+		if(sec < 10) {
+			
+			return ""+mins+":0"+sec;
+		}else {
+			return ""+mins+":"+sec;
+		}
+		
 	}
 
 }
