@@ -113,10 +113,18 @@ public class BestList {
 		int totalScA = calcScoreTotal(bestBlockA);
 		int totalScB = calcScoreTotal(bestBlockB);
 		
+		
+
+		System.out.println("Total num of songs: " + totalSongs + "\n");
+		for(Song s : songs) {
+			System.out.println("id: " + s.getiD() +"\t seconds: "+ s.getTimeMin() + "\t score:" + s.getScore());
+		}
+		
+		System.out.println("\nLength of each block: " + ((int) maxDurationSeconds/60) + ":" + ((int) maxDurationSeconds%60));
 		System.out.println("Total score: " + (totalScB+totalScA));
 		System.out.println("Total counters: " + counter);
 		
-		System.out.println("Best Block A: ");
+		System.out.println("\nBest Block A: ");
 		
 		for(Song s : bestBlockA) {
 			System.out.println("id: " + s.getiD() +"\t seconds: "+ s.getTimeMin() + "\t score:" + s.getScore());
