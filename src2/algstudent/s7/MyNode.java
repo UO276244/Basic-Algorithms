@@ -33,17 +33,17 @@ public class MyNode extends Node{
 		
 	}
 //	
-////	
-////	@Override
-////	public void calculateHeuristicValue() {
-////		
-////		if( getTotalScore(A) > timeLimit || getTotalScore(B) > timeLimit ) {
-////			heuristicValue = Integer.MAX_VALUE;
-////		} else {
-////			
-////			heuristicValue = (getTotalScore(B) + getTotalScore(A)) * (-1);
-////		}
-////	}
+	
+	@Override
+	public void calculateHeuristicValue() {
+		
+		if( getTotalScore(A) > timeLimit || getTotalScore(B) > timeLimit ) {
+			heuristicValue = Integer.MAX_VALUE;
+		} else {
+			
+			heuristicValue = (getTotalScore(B) + getTotalScore(A)) * (-1);
+		}
+	}
 //	
 //	@Override
 //	public void calculateHeuristicValue() {
