@@ -1,4 +1,4 @@
-package algstudent.s7.util;
+package algstudent.s7;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -70,7 +70,6 @@ public abstract class Node implements Comparable<Node> {
 		return Integer.MAX_VALUE; //Implementation by default
 	}
     
-	@Override
 	public int compareTo(Node node) { //BRANCHING METHOD
 		int totalValue = heuristicValue;
 		int totalValueToBeCompared = node.getHeuristicValue();
