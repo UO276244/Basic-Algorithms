@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import algstudent.s7.Song;
+
 public class BestList {
 
 	List<Song> songs;
@@ -23,6 +25,15 @@ public class BestList {
 	public BestList(String filename, int maxDurationMinutes) {
 		
 		songs = loadSongs(filename);
+		this.maxDurationSeconds = maxDurationMinutes*60;
+		bestBlockA = new ArrayList<Song>();
+		bestBlockB = new ArrayList<Song>();
+		auxBlockA = new ArrayList<Song>();
+		auxBlockB = new ArrayList<Song>();
+	}
+	
+	public BestList(List<Song> songs, int maxDurationMinutes) {
+		this.songs = songs;
 		this.maxDurationSeconds = maxDurationMinutes*60;
 		bestBlockA = new ArrayList<Song>();
 		bestBlockB = new ArrayList<Song>();
