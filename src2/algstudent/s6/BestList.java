@@ -30,15 +30,17 @@ public class BestList {
 		bestBlockB = new ArrayList<Song>();
 		auxBlockA = new ArrayList<Song>();
 		auxBlockB = new ArrayList<Song>();
+		totalSongs = songs.size();
 	}
 	
 	public BestList(List<Song> songs, int maxDurationMinutes) {
 		this.songs = songs;
-		this.maxDurationSeconds = maxDurationMinutes*60;
+		this.maxDurationSeconds = maxDurationMinutes;
 		bestBlockA = new ArrayList<Song>();
 		bestBlockB = new ArrayList<Song>();
 		auxBlockA = new ArrayList<Song>();
 		auxBlockB = new ArrayList<Song>();
+		totalSongs = songs.size();
 	}
 	
 	/*

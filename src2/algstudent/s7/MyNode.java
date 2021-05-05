@@ -39,7 +39,7 @@ public class MyNode extends Node{
 	public int getNodeCount() {
 		return nodeCounter;
 	}
-//	
+	
 	
 	@Override
 	public void calculateHeuristicValue() {
@@ -51,7 +51,7 @@ public class MyNode extends Node{
 			heuristicValue = (getTotalScore(B) + getTotalScore(A)) * (-1);
 		}
 	}
-//	
+	
 //	@Override
 //	public void calculateHeuristicValue() {
 //		

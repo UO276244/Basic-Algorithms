@@ -14,24 +14,44 @@ public class MainMeasurement {
 		BestList back;
 		Node root; 
 		List<Song> songs;
-		int n = 20;
-		for(int i=n; i<800; i*=2) {
+		int n = 25;
+		int limit;
+		long timeStart;
+		long timeEnd ;
+		
+		for(int i=n; i<=40000000; i*=2) {
+			
 			songs = getSongsRandomly(i);
-			back = new BestList(songs,getTotalSec(songs));
-			root = new MyNode(songs, (int)(0.4*getTotalSec(songs)));
-			bnb = new MyBandB(root);
+			limit = (int)((getTotalSec(songs)/10)*4);
 			
-			long timeStart = System.currentTimeMillis();
-			bnb.branchAndBound(root);
-			long timeEnd = System.currentTimeMillis();
-			System.out.println("BnB for n: " + n + " --- time: " + (timeEnd - timeStart));
+			back = new BestList(songs, limit);
 			
-			timeStart = System.currentTimeMillis();
+			
+			 timeStart = System.currentTimeMillis();
 			back.compute();
-			timeEnd = System.currentTimeMillis();
-			System.out.println("Backtracking for n: " + n + " --- time: " + (timeEnd - timeStart));
+			 timeEnd = System.currentTimeMillis();
+			System.out.println("Backtracking for n: " + i + " --- time: " + (timeEnd - timeStart));
 			
 		}
+		
+		
+		for(int i=n; i<800; i*=2) {
+			
+			songs = getSongsRandomly(i);
+			limit = getFixedT(getTotalSec(songs));
+			
+
+			root = new MyNode(songs, limit);
+			bnb = new MyBandB(root);
+			
+			 timeStart = System.currentTimeMillis();
+			bnb.branchAndBound(root);
+			 timeEnd = System.currentTimeMillis();
+			System.out.println("BnB for n: " + i + " --- time: " + (timeEnd - timeStart));
+			
+			
+		}
+		
 		
 		
 	}
@@ -46,6 +66,11 @@ public class MainMeasurement {
 		
 		return aux;
 		
+	}
+	
+	
+	private static int getFixedT(int time) {
+		return (int)((time/10)*4);
 	}
 	
 	
