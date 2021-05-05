@@ -14,12 +14,12 @@ public class MainMeasurement {
 		BestList back;
 		Node root; 
 		List<Song> songs;
-		int n = 25;
+		int n = 2;
 		int limit;
 		long timeStart;
 		long timeEnd ;
 		
-		for(int i=n; i<=40000000; i*=2) {
+		for(int i=n; i<=17; i++) {
 			
 			songs = getSongsRandomly(i);
 			limit = (int)((getTotalSec(songs)/10)*4);
@@ -35,7 +35,7 @@ public class MainMeasurement {
 		}
 		
 		
-		for(int i=n; i<800; i*=2) {
+		for(int i=n; i<=12; i++) {
 			
 			songs = getSongsRandomly(i);
 			limit = getFixedT(getTotalSec(songs));
