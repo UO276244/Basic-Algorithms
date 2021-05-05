@@ -82,4 +82,6 @@ public abstract class Node implements Comparable<Node> {
 	public abstract void calculateHeuristicValue();
 	public abstract ArrayList<Node> expand();
 	public abstract boolean isSolution();
+	public abstract int getNodeCount() ;
+	
 }

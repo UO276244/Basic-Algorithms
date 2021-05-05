@@ -13,15 +13,17 @@ public class MyNode extends Node{
 	private ArrayList<Node> children;
 	
 	List<Song> allSongs;
+	private int nodeCounter = 0;
 	
 	//Constructor for children
-	public MyNode(List<Song> allSongs, List<Song> A, List<Song> B, int timeLimit, int depth, UUID parent) {
+	public MyNode(List<Song> allSongs, List<Song> A, List<Song> B, int timeLimit, int depth, UUID parent, int nodeCounter) {
 		this.allSongs = allSongs;
 		this.A = A;
 		this.B = B;
 		this.timeLimit = timeLimit;
 		this.depth = depth;
 		this.parentID = parent;
+		this.nodeCounter += nodeCounter;
 		
 	}
 	//Constructor only for root
@@ -31,6 +33,11 @@ public class MyNode extends Node{
 		this.allSongs = allSongs;
 		this.timeLimit = timeLimit;
 		
+	}
+
+	@Override
+	public int getNodeCount() {
+		return nodeCounter;
 	}
 //	
 	
@@ -96,23 +103,26 @@ public class MyNode extends Node{
 			
 		
 		//Adding song to A
+		nodeCounter++;
 		A.add(allSongs.get(this.depth));
 		children.add(new MyNode(new ArrayList<Song>(allSongs),new ArrayList<Song>(A) 
 				,new ArrayList<Song>(B), 
-				this.timeLimit, this.depth+1,this.ID));
+				this.timeLimit, this.depth+1,this.ID,nodeCounter));
 		A.remove(allSongs.get(this.depth));
 		
+		nodeCounter++;
 		//Adding song to B
 		B.add(allSongs.get(this.depth));
 		children.add(new MyNode(new ArrayList<Song>(allSongs),new ArrayList<Song>(A) 
 				,new ArrayList<Song>(B), 
-				this.timeLimit, this.depth+1,this.ID));
+				this.timeLimit, this.depth+1,this.ID,nodeCounter));
 		B.remove(allSongs.get(this.depth));
 		
 		//Adding song to none list
+		nodeCounter++;
 		children.add(new MyNode(new ArrayList<Song>(allSongs),new ArrayList<Song>(A) 
 				,new ArrayList<Song>(B), 
-				this.timeLimit,this.depth+1,this.ID));
+				this.timeLimit,this.depth+1,this.ID,nodeCounter));
 		
 		}
 		return children;
